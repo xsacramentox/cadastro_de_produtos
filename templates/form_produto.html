@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+</head>
+<body>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="page-header">
+            {% if acao == 'INCLUIR' %}
+            <h2>Inclusão de Produtos</h2>
+            {% elif acao == 'EDITAR' %}
+            <h2>Edição de Produtos</h2>
+            {% elif acao == 'EXCLUIR' %}
+            <h2>Exclusão de Produtos</h2>
+            {% endif %} 
+        </div>
+    </div>
+
+    <form action="/produtos/processar" method="post"> 
+
+        <input name= "id" value="{{ produto.id }}" type="hidden">
+        <input name="ACAO" value="{{ acao }}" type = "hidden">
+
+        <div class="form-group">
+            <label>Descrição do Produto</label>
+            <input class="form-control" type="text" maxlength="100" name="descricao" value="{{ produto.descricao }}">
+        </div>
+
+        <div class="form-group">
+            <label>Código de Barras</label>
+            <input class="form-control" type="text" maxlength="25" name="codigo_de_barras" value="{{ produto.codigo_de_barras }}">            
+        </div>
+
+        <div class="form-group">
+            <label>Preço</label>
+            <input class="form-control" type="number" name="preco" value="{{ produto.preco }}">
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Salvar">
+
+    </form>
+
+</div>
+    
+</body>
+</html>
